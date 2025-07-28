@@ -75,11 +75,14 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-1 lg:space-x-2 text-sm lg:text-base text-gray-300 hover:text-white transition-colors duration-300 group px-2 py-1 rounded-md hover:bg-white/10"
+                className="relative flex items-center space-x-1 lg:space-x-2 text-sm lg:text-base text-gray-300 hover:text-white transition-colors duration-300 group px-2 py-1 overflow-hidden"
               >
                 <item.icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                 <span className="hidden lg:inline">{item.label}</span>
                 <span className="lg:hidden text-xs">{item.label.charAt(0)}</span>
+                
+                {/* Animated underline */}
+                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 group-hover:w-full transition-all duration-500 ease-out"></div>
               </motion.button>
             ))}
           </div>
@@ -128,10 +131,13 @@ const Header = () => {
                     ease: "easeOut"
                   }}
                   onClick={() => scrollToSection(item.href)}
-                  className="flex items-center space-x-3 w-full text-left text-sm sm:text-base text-gray-300 hover:text-white transition-colors duration-300 p-3 rounded-lg hover:bg-white/20 active:bg-white/30 max-w-full overflow-hidden"
+                  className="relative flex items-center space-x-3 w-full text-left text-sm sm:text-base text-gray-300 hover:text-white transition-colors duration-300 p-3 max-w-full overflow-hidden group"
                 >
                   <item.icon className="w-5 h-5 flex-shrink-0" />
                   <span className="truncate">{item.label}</span>
+                  
+                  {/* Animated underline */}
+                  <div className="absolute bottom-2 left-3 h-0.5 w-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 group-hover:w-[calc(100%-1.5rem)] transition-all duration-500 ease-out"></div>
                 </motion.button>
               ))}
             </div>

@@ -87,8 +87,8 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-black/20" ref={ref}>
-      <div className="container mx-auto px-6 max-w-7xl">
+    <section id="contact" className="py-8 bg-black/20" ref={ref}>
+      <div className="mx-auto px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}

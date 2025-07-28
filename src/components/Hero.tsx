@@ -27,6 +27,13 @@ const Hero = () => {
     }
   };
 
+  const scrollToContact = () => {
+    const contactSection = document.querySelector('#contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 sm:pt-20 md:pt-0">
       {/* Background particles animation */}
@@ -109,7 +116,7 @@ const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToNext()}
+              onClick={() => scrollToContact()}
               className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-gray-600 text-white font-semibold rounded-full hover:border-gray-400 transition-all duration-300 flex items-center justify-center space-x-2"
             >
               <Mail className="w-5 h-5" />

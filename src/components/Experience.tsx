@@ -87,8 +87,8 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20" ref={ref}>
-      <div className="container mx-auto px-6 max-w-7xl">
+    <section id="experience" className="py-8" ref={ref}>
+      <div className="mx-auto px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -117,9 +117,6 @@ const Experience = () => {
           </motion.h3>
 
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-purple-600"></div>
-
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.id}
@@ -128,11 +125,8 @@ const Experience = () => {
                 transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
                 className="relative flex items-start mb-12 last:mb-0"
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-6 w-4 h-4 bg-blue-600 rounded-full border-4 border-black z-10"></div>
-
                 {/* Content */}
-                <div className="ml-20 glass p-8 rounded-xl w-full group hover:bg-white/10 transition-all duration-300">
+                <div className="glass p-8 rounded-xl w-full group hover:bg-white/10 transition-all duration-300">
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
                     <div>
                       <h4 className="text-2xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
