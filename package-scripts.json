@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "analyze": "ANALYZE=true npm run build",
+    "seo-check": "npm run build && npm run lighthouse",
+    "lighthouse": "lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report.html --view",
+    "test-seo": "next build && next start & sleep 5 && lighthouse http://localhost:3000 --only-categories=seo,performance,accessibility --output=json --output-path=./seo-report.json"
+  }
+}
