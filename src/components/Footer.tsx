@@ -44,7 +44,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-black/40 border-t border-white/10">
-      <div className="container mx-auto px-6 py-12">
+      <div className="container mx-auto px-6 py-12 max-w-7xl">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <motion.div

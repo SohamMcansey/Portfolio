@@ -43,18 +43,19 @@ const Header = () => {
           : 'bg-transparent'
       }`}
     >
-      <nav className="container mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto">
+        <nav className="px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <h1 className="text-2xl font-bold gradient-text">Portfolio</h1>
+            <h1 className="text-xl sm:text-2xl font-bold gradient-text">Portfolio</h1>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.href}
@@ -62,10 +63,11 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-300 group"
+                className="flex items-center space-x-1 lg:space-x-2 text-sm lg:text-base text-gray-300 hover:text-white transition-colors duration-300 group px-2 py-1 rounded-md hover:bg-white/10"
               >
                 <item.icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
-                <span>{item.label}</span>
+                <span className="hidden lg:inline">{item.label}</span>
+                <span className="lg:hidden text-xs">{item.label.charAt(0)}</span>
               </motion.button>
             ))}
           </div>
@@ -75,10 +77,10 @@ const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="md:hidden p-2 text-white"
+            className="md:hidden p-2 text-white rounded-md hover:bg-white/10 transition-colors duration-300"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
           </motion.button>
         </div>
 
@@ -90,9 +92,15 @@ const Header = () => {
             height: isOpen ? 'auto' : 0,
           }}
           transition={{ duration: 0.3 }}
-          className="md:hidden overflow-hidden"
+          className={`md:hidden overflow-hidden ${
+            scrolled && isOpen
+              ? 'bg-black/80 backdrop-blur-md border-t border-white/10 mt-4 rounded-lg'
+              : isOpen
+              ? 'bg-black/50 backdrop-blur-sm mt-4 rounded-lg'
+              : ''
+          }`}
         >
-          <div className="py-4 space-y-4">
+          <div className="py-4 px-2 space-y-2">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.href}
@@ -100,15 +108,16 @@ const Header = () => {
                 animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}
                 transition={{ delay: 0.1 * index }}
                 onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-3 w-full text-left text-gray-300 hover:text-white transition-colors duration-300 p-2 rounded-lg hover:bg-white/10"
+                className="flex items-center space-x-3 w-full text-left text-sm sm:text-base text-gray-300 hover:text-white transition-colors duration-300 p-3 rounded-lg hover:bg-white/20 active:bg-white/30"
               >
-                <item.icon className="w-5 h-5" />
+                <item.icon className="w-5 h-5 flex-shrink-0" />
                 <span>{item.label}</span>
               </motion.button>
             ))}
           </div>
         </motion.div>
-      </nav>
+        </nav>
+      </div>
     </motion.header>
   );
 };

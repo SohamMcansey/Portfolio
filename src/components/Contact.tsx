@@ -25,15 +25,30 @@ const Contact = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setIsLoading(false);
-    
-    // Show success message (you can implement a toast notification here)
-    alert('Message sent successfully!');
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        // Reset form
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        alert('Message sent successfully! You should receive a confirmation email shortly.');
+      } else {
+        const errorData = await response.json();
+        console.error('Error:', errorData);
+        alert('Failed to send message. Please try again or contact me directly at sohamdas704@gmail.com');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to send message. Please check your internet connection and try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -73,7 +88,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-black/20" ref={ref}>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -105,29 +120,32 @@ const Contact = () => {
 
             {/* Contact Details */}
             <div className="space-y-6 mb-12">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={index}
-                  href={info.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                  whileHover={{ x: 10, scale: 1.02 }}
-                  className="flex items-center p-4 glass rounded-xl hover:bg-white/10 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
-                    <info.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold group-hover:text-blue-300 transition-colors duration-300">
-                      {info.title}
-                    </h4>
-                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-                      {info.value}
-                    </p>
-                  </div>
-                </motion.a>
-              ))}
+              {contactInfo.map((info, index) => {
+                const Component = info.href ? motion.a : motion.div;
+                return (
+                  <Component
+                    key={index}
+                    href={info.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                    whileHover={{ x: 10, scale: 1.02 }}
+                    className={`flex items-center p-4 glass rounded-xl hover:bg-white/10 transition-all duration-300 group ${info.href ? 'cursor-pointer' : ''}`}
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                      <info.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold group-hover:text-blue-300 transition-colors duration-300">
+                        {info.title}
+                      </h4>
+                      <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                        {info.value}
+                      </p>
+                    </div>
+                  </Component>
+                );
+              })}
             </div>
 
             {/* Social Links */}

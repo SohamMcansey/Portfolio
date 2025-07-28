@@ -28,7 +28,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 sm:pt-20 md:pt-0">
       {/* Background particles animation */}
       <div className="absolute inset-0">
         {[...Array(50)].map((_, i) => (
@@ -53,7 +53,7 @@ const Hero = () => {
         ))}
       </div>
 
-      <div className="container mx-auto px-6 text-center relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 text-center relative z-10 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold mb-6"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6 leading-tight"
           >
             Hi, I&apos;m{' '}
             <span className="gradient-text">
@@ -76,7 +76,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-xl md:text-2xl text-gray-300 mb-8"
+            className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 md:mb-8"
           >
             Full Stack Developer
           </motion.h2>
@@ -85,7 +85,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg text-gray-400 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0"
           >
             I craft exceptional digital experiences through clean code and innovative design. 
             Passionate about creating scalable applications that make a difference.
@@ -95,12 +95,12 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-12 md:mb-16 px-4 sm:px-0"
           >
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2"
             >
               <Download className="w-5 h-5" />
               <span>Download Resume</span>
@@ -110,7 +110,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToNext()}
-              className="px-8 py-4 border border-gray-600 text-white font-semibold rounded-full hover:border-gray-400 transition-all duration-300 flex items-center space-x-2"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-gray-600 text-white font-semibold rounded-full hover:border-gray-400 transition-all duration-300 flex items-center justify-center space-x-2"
             >
               <Mail className="w-5 h-5" />
               <span>Get In Touch</span>
