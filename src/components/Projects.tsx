@@ -9,67 +9,46 @@ const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [currentProject, setCurrentProject] = useState(0);
+  
+  // Touch handling state
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  
+  // Mouse drag state
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState(0);
+  const [dragEnd, setDragEnd] = useState(0);
 
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution built with Next.js, featuring user authentication, payment integration, and admin dashboard.',
+      title: 'GENX – Django-Based eCommerce Platform',
+      description: 'Full-featured eCommerce platform with modern UI/UX. Features: User login, product categorization, shopping cart, payment gateway, order tracking',
       image: '/api/placeholder/600/400',
-      technologies: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Stripe', 'TailwindCSS'],
+      technologies: ['Django', 'Python', 'MySQL'],
       github: '#',
       live: '#',
       category: 'Full Stack',
     },
     {
       id: 2,
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
+      title: 'AIMSR – College Website',
+      description: 'Modern college website built with .NET 9.0. Comprehensive college website with student portal and administrative features',
       image: '/api/placeholder/600/400',
-      technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB', 'Express.js', 'Material-UI'],
+      technologies: ['.NET 9.0', 'C#'],
       github: '#',
       live: '#',
       category: 'Full Stack',
     },
     {
       id: 3,
-      title: 'Weather Dashboard',
-      description: 'A responsive weather dashboard that provides detailed weather information with beautiful visualizations and location-based forecasts.',
+      title: 'AutoShop – Spring Boot REST API',
+      description: 'RESTful API for automotive shop management. Complete REST API with CRUD operations for automotive shop management system',
       image: '/api/placeholder/600/400',
-      technologies: ['Vue.js', 'Chart.js', 'OpenWeather API', 'SCSS', 'Netlify'],
-      github: '#',
-      live: '#',
-      category: 'Frontend',
-    },
-    {
-      id: 4,
-      title: 'Social Media API',
-      description: 'A RESTful API for a social media platform with user authentication, post management, and real-time messaging capabilities.',
-      image: '/api/placeholder/600/400',
-      technologies: ['Node.js', 'Express.js', 'JWT', 'MongoDB', 'Socket.io', 'Cloudinary'],
+      technologies: ['Spring Boot', 'Java', 'REST API'],
       github: '#',
       live: '#',
       category: 'Backend',
-    },
-    {
-      id: 5,
-      title: 'Portfolio Website',
-      description: 'A modern, responsive portfolio website showcasing creative animations and smooth user experience.',
-      image: '/api/placeholder/600/400',
-      technologies: ['Next.js', 'Framer Motion', 'TailwindCSS', 'TypeScript'],
-      github: '#',
-      live: '#',
-      category: 'Frontend',
-    },
-    {
-      id: 6,
-      title: 'Learning Management System',
-      description: 'A comprehensive LMS with course creation, student enrollment, progress tracking, and interactive quizzes.',
-      image: '/api/placeholder/600/400',
-      technologies: ['React', 'Python', 'Django', 'PostgreSQL', 'AWS S3', 'Stripe'],
-      github: '#',
-      live: '#',
-      category: 'Full Stack',
     },
   ];
 
@@ -86,6 +65,65 @@ const Projects = () => {
 
   const prevProject = () => {
     setCurrentProject((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
+  };
+
+  // Touch handlers for swipe functionality
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(0); // Reset touchEnd
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextProject();
+    } else if (isRightSwipe) {
+      prevProject();
+    }
+  };
+
+  // Mouse drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setDragStart(e.clientX);
+    setDragEnd(0);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    setDragEnd(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging || !dragStart || !dragEnd) {
+      setIsDragging(false);
+      return;
+    }
+    
+    const distance = dragStart - dragEnd;
+    const isLeftDrag = distance > 50;
+    const isRightDrag = distance < -50;
+
+    if (isLeftDrag) {
+      nextProject();
+    } else if (isRightDrag) {
+      prevProject();
+    }
+    
+    setIsDragging(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
   };
 
   return (
@@ -138,7 +176,17 @@ const Projects = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="relative mb-16"
         >
-          <div className="glass rounded-2xl overflow-hidden">
+          <div 
+            className="glass rounded-2xl overflow-hidden select-none cursor-grab active:cursor-grabbing"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            style={{ touchAction: 'pan-y' }}
+          >
             <div className="grid lg:grid-cols-2 gap-8 p-8">
               {/* Project Image */}
               <div className="relative group">

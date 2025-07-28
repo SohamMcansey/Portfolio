@@ -12,11 +12,11 @@ const Experience = () => {
   const experiences = [
     {
       id: 1,
-      title: 'Senior Full Stack Developer',
-      company: 'TechCorp Solutions',
-      location: 'San Francisco, CA',
-      period: '2022 - Present',
-      description: 'Leading development of scalable web applications using React, Node.js, and AWS. Mentoring junior developers and architecting microservices solutions.',
+      title: 'Mern Stack Developer',
+      company: 'Mcansey IT Services Pvt Ltd',
+      location: 'Mumbai, India',
+      period: 'June 2025 - Present',
+      description: 'Leading development of scalable web applications using Next.js, Node.js, and AWS.',
       achievements: [
         'Increased application performance by 40% through optimization',
         'Led a team of 5 developers on multiple projects',
@@ -25,65 +25,48 @@ const Experience = () => {
       ],
       technologies: ['React', 'Node.js', 'AWS', 'Docker', 'TypeScript', 'PostgreSQL']
     },
-    {
-      id: 2,
-      title: 'Full Stack Developer',
-      company: 'InnovateLab',
-      location: 'Austin, TX',
-      period: '2020 - 2022',
-      description: 'Developed and maintained multiple client projects using modern JavaScript frameworks and cloud technologies.',
-      achievements: [
-        'Built 15+ responsive web applications',
-        'Reduced bug reports by 35% through comprehensive testing',
-        'Collaborated with UX/UI team to improve user experience',
-        'Integrated third-party APIs and payment systems'
-      ],
-      technologies: ['Vue.js', 'Express.js', 'MongoDB', 'Firebase', 'Stripe', 'GraphQL']
-    },
-    {
-      id: 3,
-      title: 'Frontend Developer',
-      company: 'StartupXYZ',
-      location: 'Remote',
-      period: '2019 - 2020',
-      description: 'Focused on creating engaging user interfaces and optimizing frontend performance for e-commerce platforms.',
-      achievements: [
-        'Improved page load speed by 50%',
-        'Implemented responsive design across all platforms',
-        'Increased conversion rate by 25% through UX improvements',
-        'Developed component library used across multiple projects'
-      ],
-      technologies: ['React', 'Redux', 'SCSS', 'Webpack', 'Jest', 'Cypress']
-    }
   ];
 
   const education = [
     {
       id: 1,
-      degree: 'Bachelor of Science in Computer Science',
-      school: 'University of Technology',
-      location: 'California, USA',
-      period: '2015 - 2019',
-      details: 'Graduated Magna Cum Laude with focus on Software Engineering and Web Development',
-      gpa: '3.8/4.0'
+      degree: 'Master of Computer Applications (MCA)',
+      school: 'Aditya Institute of Management Studies and Research, Borivali',
+      location: 'Mumbai, India',
+      period: '2024-2026',
+      details: 'Currently pursuing MCA with focus on Software Development and Advanced Computing'
     },
     {
       id: 2,
-      degree: 'Full Stack Web Development Bootcamp',
-      school: 'CodeAcademy Pro',
-      location: 'Online',
-      period: '2018',
-      details: 'Intensive 6-month program covering modern web development technologies',
-      gpa: 'Certificate of Completion'
+      degree: 'Bachelor of Commerce (BCom)',
+      school: 'Shankar Narayan College, Bhayandar',
+      location: 'Mumbai, India',
+      period: '2021-2024',
+      details: 'Completed Bachelor of Commerce with excellent academic performance'
+    },
+    {
+      id: 3,
+      degree: 'Higher Secondary Certificate (HSC)',
+      school: 'Shankar Narayan College, Bhayandar',
+      location: 'Mumbai, India',
+      period: '2019-2021',
+      details: 'Completed Higher Secondary education with strong academic foundation'
+    },
+    {
+      id: 4,
+      degree: 'Secondary School Certificate (SSC)',
+      school: 'St. Xavier\'s High School, Mira Road',
+      location: 'Mumbai, India',
+      period: '2018-2019',
+      details: 'Completed Secondary education with good academic performance'
     }
   ];
 
   const certifications = [
-    'AWS Certified Solutions Architect',
-    'Google Cloud Professional Developer',
-    'MongoDB Certified Developer',
-    'React Developer Certification',
-    'Node.js Certified Developer'
+    'Full Stack Web Development with AWS - IT Vedant',
+    'Python for Web Developers - IBM CEP',
+    'Computer Technology - Raj Software',
+    'Spring Framework - LearnQuest, Coursera'
   ];
 
   return (
@@ -220,7 +203,6 @@ const Experience = () => {
                     </div>
                   </div>
                   <p className="text-gray-300 mb-2">{edu.details}</p>
-                  <p className="text-blue-400 font-medium">{edu.gpa}</p>
                 </motion.div>
               ))}
             </div>
