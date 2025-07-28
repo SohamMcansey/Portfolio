@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle, Instagram } from 'lucide-react';
 
 const Contact = () => {
   const ref = useRef(null);
@@ -40,20 +40,13 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'john.doe@example.com',
-      href: 'mailto:john.doe@example.com'
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      value: 'sohamdas704@gmail.com',
+      href: 'mailto:sohamdas704@gmail.com'
     },
     {
       icon: MapPin,
       title: 'Location',
-      value: 'San Francisco, CA',
-      href: '#'
+      value: 'Mumbai, India',
     }
   ];
 
@@ -61,25 +54,19 @@ const Contact = () => {
     {
       icon: Github,
       name: 'GitHub',
-      href: '#',
+      href: 'https://github.com/SohamDas2003',
       color: 'hover:text-gray-300'
     },
     {
       icon: Linkedin,
       name: 'LinkedIn',
-      href: '#',
+      href: 'https://in.linkedin.com/in/soham2003',
       color: 'hover:text-blue-400'
     },
     {
-      icon: Twitter,
-      name: 'Twitter',
-      href: '#',
-      color: 'hover:text-blue-300'
-    },
-    {
-      icon: MessageCircle,
-      name: 'Discord',
-      href: '#',
+      icon: Instagram,
+      name: 'Instagram',
+      href: 'https://www.instagram.com/_sohamdas_/',
       color: 'hover:text-purple-400'
     }
   ];

@@ -78,7 +78,7 @@ const Hero = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="text-xl md:text-2xl text-gray-300 mb-8"
           >
-            Full Stack Developer & UI/UX Enthusiast
+            Full Stack Developer
           </motion.h2>
 
           <motion.p
@@ -124,9 +124,9 @@ const Hero = () => {
             className="flex items-center justify-center space-x-6"
           >
             {[
-              { icon: Github, href: '#', label: 'GitHub' },
-              { icon: Linkedin, href: '#', label: 'LinkedIn' },
-              { icon: Mail, href: '#', label: 'Email' },
+              { icon: Github, href: 'https://github.com/SohamDas2003', label: 'GitHub' },
+              { icon: Linkedin, href: 'https://in.linkedin.com/in/soham2003', label: 'LinkedIn' },
+              { icon: Mail, href: 'mailto:sohamdas704@gmail.com', label: 'Email' },
             ].map((social, index) => (
               <motion.a
                 key={index}
