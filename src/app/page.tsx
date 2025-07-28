@@ -19,8 +19,7 @@ const structuredData = {
   "url": "https://sohamdas.dev", // Replace with your actual domain
   "sameAs": [
     "https://github.com/SohamDas2003", // Replace with your actual profiles
-    "https://linkedin.com/in/soham2003",
-    "https://twitter.com/yourtwitterhandle"
+    "https://www.linkedin.com/in/soham2003/",
   ],
   "knowsAbout": [
     "JavaScript",

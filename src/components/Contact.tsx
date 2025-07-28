@@ -66,25 +66,25 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    {
-      icon: Github,
-      name: 'GitHub',
-      href: 'https://github.com/SohamDas2003',
-      color: 'hover:text-gray-300'
-    },
-    {
-      icon: Linkedin,
-      name: 'LinkedIn',
-      href: 'https://in.linkedin.com/in/soham2003',
-      color: 'hover:text-blue-400'
-    },
-    {
-      icon: Instagram,
-      name: 'Instagram',
-      href: 'https://www.instagram.com/_sohamdas_/',
-      color: 'hover:text-purple-400'
-    }
-  ];
+		{
+			icon: Github,
+			name: "GitHub",
+			href: "https://github.com/SohamDas2003",
+			color: "hover:text-gray-300",
+		},
+		{
+			icon: Linkedin,
+			name: "LinkedIn",
+			href: "https://www.linkedin.com/in/soham2003/",
+			color: "hover:text-blue-400",
+		},
+		{
+			icon: Instagram,
+			name: "Instagram",
+			href: "https://www.instagram.com/_sohamdas_/",
+			color: "hover:text-purple-400",
+		},
+	];
 
   return (
     <section id="contact" className="py-8 bg-black/20" ref={ref}>
