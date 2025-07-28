@@ -30,18 +30,18 @@ const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 sm:pt-20 md:pt-0">
       {/* Background particles animation */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         {[...Array(50)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-blue-500 rounded-full"
             initial={{
-              x: Math.random() * windowSize.width,
-              y: Math.random() * windowSize.height,
+              x: Math.min(Math.random() * windowSize.width, windowSize.width - 10),
+              y: Math.min(Math.random() * windowSize.height, windowSize.height - 10),
               opacity: Math.random(),
             }}
             animate={{
-              y: [null, Math.random() * windowSize.height],
+              y: [null, Math.min(Math.random() * windowSize.height, windowSize.height - 10)],
               opacity: [null, Math.random()],
             }}
             transition={{

@@ -50,6 +50,7 @@ const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
+            className="flex-shrink-0"
           >
             <h1 className="text-xl sm:text-2xl font-bold gradient-text">Portfolio</h1>
           </motion.div>
@@ -92,7 +93,7 @@ const Header = () => {
             height: isOpen ? 'auto' : 0,
           }}
           transition={{ duration: 0.3 }}
-          className={`md:hidden overflow-hidden ${
+          className={`md:hidden overflow-hidden w-full ${
             scrolled && isOpen
               ? 'bg-black/80 backdrop-blur-md border-t border-white/10 mt-4 rounded-lg'
               : isOpen
@@ -100,7 +101,7 @@ const Header = () => {
               : ''
           }`}
         >
-          <div className="py-4 px-2 space-y-2">
+          <div className="py-4 px-2 space-y-2 max-w-full">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.href}
@@ -108,10 +109,10 @@ const Header = () => {
                 animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}
                 transition={{ delay: 0.1 * index }}
                 onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-3 w-full text-left text-sm sm:text-base text-gray-300 hover:text-white transition-colors duration-300 p-3 rounded-lg hover:bg-white/20 active:bg-white/30"
+                className="flex items-center space-x-3 w-full text-left text-sm sm:text-base text-gray-300 hover:text-white transition-colors duration-300 p-3 rounded-lg hover:bg-white/20 active:bg-white/30 max-w-full overflow-hidden"
               >
                 <item.icon className="w-5 h-5 flex-shrink-0" />
-                <span>{item.label}</span>
+                <span className="truncate">{item.label}</span>
               </motion.button>
             ))}
           </div>

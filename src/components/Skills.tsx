@@ -164,12 +164,12 @@ const Skills = () => {
               key={i}
               className="absolute w-2 h-2 bg-blue-500/20 rounded-full"
               initial={{
-                x: Math.random() * windowSize.width,
-                y: Math.random() * windowSize.height,
+                x: Math.min(Math.random() * windowSize.width, windowSize.width - 10),
+                y: Math.min(Math.random() * windowSize.height, windowSize.height - 10),
               }}
               animate={{
-                x: Math.random() * windowSize.width,
-                y: Math.random() * windowSize.height,
+                x: Math.min(Math.random() * windowSize.width, windowSize.width - 10),
+                y: Math.min(Math.random() * windowSize.height, windowSize.height - 10),
               }}
               transition={{
                 duration: Math.random() * 20 + 20,

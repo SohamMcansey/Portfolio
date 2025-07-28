@@ -148,11 +148,11 @@ const Footer = () => {
             key={i}
             className="absolute w-1 h-1 bg-blue-500/20 rounded-full"
             initial={{
-              x: Math.random() * windowSize.width,
+              x: Math.min(Math.random() * windowSize.width, windowSize.width - 10),
               y: Math.random() * 200,
             }}
             animate={{
-              x: Math.random() * windowSize.width,
+              x: Math.min(Math.random() * windowSize.width, windowSize.width - 10),
               y: Math.random() * 200,
             }}
             transition={{

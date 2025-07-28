@@ -75,12 +75,12 @@ const AnimatedBackground = () => {
           key={i}
           className="absolute w-1 h-1 bg-blue-400/30 rounded-full"
           initial={{
-            x: Math.random() * windowSize.width,
-            y: Math.random() * windowSize.height,
+            x: Math.min(Math.random() * windowSize.width, windowSize.width - 10),
+            y: Math.min(Math.random() * windowSize.height, windowSize.height - 10),
           }}
           animate={{
-            x: Math.random() * windowSize.width,
-            y: Math.random() * windowSize.height,
+            x: Math.min(Math.random() * windowSize.width, windowSize.width - 10),
+            y: Math.min(Math.random() * windowSize.height, windowSize.height - 10),
           }}
           transition={{
             duration: Math.random() * 20 + 20,
