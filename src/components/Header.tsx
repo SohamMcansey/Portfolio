@@ -26,11 +26,22 @@ const Header = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsOpen(false);
+    setIsOpen(false); // Close menu first
+    
+    // Small delay to allow menu to close before scrolling
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        const headerHeight = 80; // Approximate header height
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerHeight;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 300); // Match the menu close animation duration
   };
 
   return (
@@ -87,35 +98,44 @@ const Header = () => {
 
         {/* Mobile Navigation Menu */}
         <motion.div
-          initial={{ opacity: 0, height: 0 }}
+          initial={false}
           animate={{
             opacity: isOpen ? 1 : 0,
             height: isOpen ? 'auto' : 0,
           }}
-          transition={{ duration: 0.3 }}
-          className={`md:hidden overflow-hidden w-full ${
-            scrolled && isOpen
-              ? 'bg-black/80 backdrop-blur-md border-t border-white/10 mt-4 rounded-lg'
-              : isOpen
-              ? 'bg-black/50 backdrop-blur-sm mt-4 rounded-lg'
-              : ''
+          transition={{ 
+            duration: 0.3,
+            ease: "easeInOut"
+          }}
+          className={`md:hidden overflow-hidden w-screen absolute left-0 top-full ${
+            isOpen ? 'bg-black/90 border-b border-white/10' : ''
           }`}
+          style={{
+            backdropFilter: isOpen ? 'blur(20px) saturate(180%) brightness(0.3)' : 'none',
+            WebkitBackdropFilter: isOpen ? 'blur(20px) saturate(180%) brightness(0.3)' : 'none',
+          }}
         >
-          <div className="py-4 px-2 space-y-2 max-w-full">
-            {navItems.map((item, index) => (
-              <motion.button
-                key={item.href}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}
-                transition={{ delay: 0.1 * index }}
-                onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-3 w-full text-left text-sm sm:text-base text-gray-300 hover:text-white transition-colors duration-300 p-3 rounded-lg hover:bg-white/20 active:bg-white/30 max-w-full overflow-hidden"
-              >
-                <item.icon className="w-5 h-5 flex-shrink-0" />
-                <span className="truncate">{item.label}</span>
-              </motion.button>
-            ))}
-          </div>
+          {isOpen && (
+            <div className="py-4 px-2 space-y-2 max-w-full">
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={item.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ 
+                    delay: 0.1 + (0.05 * index),
+                    duration: 0.3,
+                    ease: "easeOut"
+                  }}
+                  onClick={() => scrollToSection(item.href)}
+                  className="flex items-center space-x-3 w-full text-left text-sm sm:text-base text-gray-300 hover:text-white transition-colors duration-300 p-3 rounded-lg hover:bg-white/20 active:bg-white/30 max-w-full overflow-hidden"
+                >
+                  <item.icon className="w-5 h-5 flex-shrink-0" />
+                  <span className="truncate">{item.label}</span>
+                </motion.button>
+              ))}
+            </div>
+          )}
         </motion.div>
         </nav>
       </div>
